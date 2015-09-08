@@ -14,7 +14,7 @@ input and for any major change in these values, it will trigger a tweet post.
 
 ## Progress Report:
 
-  ##DATE: 28-08-2015
+###DATE: 28-08-2015
 
   Study for the project feasibility complete, all required intel gathered and distributed in working team.
   DHT22 sensor recieved and properly tested on Arduino Uno R3.
@@ -22,7 +22,7 @@ input and for any major change in these values, it will trigger a tweet post.
   Waiting for the Ethernet Sheild for further progress on ethernet connection verification.
   creating the twitter account is on hold, waiting for the resource gathering to complete.
 
-  ##DATE: 08-09-2015
+###DATE: 08-09-2015
 
   Ethernet Sheild W5100 reached and tested for connection establishment. test passes.
   New twitter account registerd under the name of Speakuino Tweeterson, and generated the Twitter Arduino API token manually.
