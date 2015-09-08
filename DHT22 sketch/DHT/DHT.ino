@@ -4,13 +4,18 @@
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
 #define fan 13
 
-int maxHum = 50;
+int maxHum = 75;
 int maxTemp = 45;
 
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
+pinMode(9,OUTPUT);
+pinMode(8,INPUT_PULLUP);
+pinMode(7,OUTPUT);
 
+digitalWrite(9,HIGH);
+digitalWrite(7,LOW);
   pinMode(fan, OUTPUT);
   Serial.begin(9600); 
   dht.begin();
