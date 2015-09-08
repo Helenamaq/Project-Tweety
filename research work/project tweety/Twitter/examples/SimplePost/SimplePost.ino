@@ -17,7 +17,7 @@ byte ip[] = { 10, 0, 0, 15 };
 Twitter twitter("3491000954-JoQ3TcuAGX3C6vFHQoAiWZyO0QUECz2EbO2CWrd");
 
 // Message to post
-char msg[] = "Hello, World! I'm Arduino!";
+char msg[] = "Hello, World! I'm Speakuino!";
 
 void setup()
 {
