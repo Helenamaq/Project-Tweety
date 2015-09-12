@@ -35,7 +35,8 @@ byte ip[] = { 10, 0, 0, 15 };
 Twitter twitter("3491000954-JoQ3TcuAGX3C6vFHQoAiWZyO0QUECz2EbO2CWrd");
 
 // Message to post
-char msg[] = "Hello, World! I'm Speakuino!";
+char msg[] = "湿度が増加しています(Shitsudo ga zōka shite imasu )";
+char msg2[] = "hi guyz, i'm Speakuino...";
 
 
 void setup()
@@ -68,59 +69,59 @@ void loop() // functions to execute repeatively here...
 { 
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
-  float h = dht.readHumidity();
-  // Read temperature as Celsius
-  float t = dht.readTemperature();
-  
-  // Check if any reads failed and exit early (to try again).
-  if (isnan(h) || isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return;
-  }
-  
-  //logic for triggering the twitter post if the change in humidity or temperature is considerable here...
-
-  float change_h = h - prev_h;
-  float change_t = t - prev_t;
-  
-  if(h > maxHum || t > maxTemp) {
-      digitalWrite(fan, HIGH);
-  } else {
-     digitalWrite(fan, LOW); 
-  }
-  Serial.print("Humidity: "); 
-  Serial.print(h);
-  Serial.print(" %\t");
-  Serial.print("Temperature: "); 
-  Serial.print(t);
-  Serial.println(" *C ");
-
-    if(change_h >= (trig_h)){
-    // statement for considerable increase in humidity.
-    picker = random(msg_count);
-    
-    }  
-    else if(change_h < -(trig_h)){
-    // statement for considerable decrease in humidity.
-    picker = random(msg_count);
-    
-    }  
-    else if(change_t >= (trig_t)){
-    // statement for considerable increase in Temperature.
-    picker = random(msg_count);
-    
-    }  
-    else if(change_t < -(trig_t)){
-    // statement for considerable decrease in Temperature.
-    picker = random(msg_count);
-    
-    }  
-    else return;
+//  float h = dht.readHumidity();
+//  // Read temperature as Celsius
+//  float t = dht.readTemperature();
+//  
+//  // Check if any reads failed and exit early (to try again).
+//  if (isnan(h) || isnan(t)) {
+//    Serial.println("Failed to read from DHT sensor!");
+//    return;
+//  }
+//  
+//  //logic for triggering the twitter post if the change in humidity or temperature is considerable here...
+//
+//  float change_h = h - prev_h;
+//  float change_t = t - prev_t;
+//  
+//  if(h > maxHum || t > maxTemp) {
+//      digitalWrite(fan, HIGH);
+//  } else {
+//     digitalWrite(fan, LOW); 
+//  }
+//  Serial.print("Humidity: "); 
+//  Serial.print(h);
+//  Serial.print(" %\t");
+//  Serial.print("Temperature: "); 
+//  Serial.print(t);
+//  Serial.println(" *C ");
+//
+//    if(change_h >= (trig_h)){
+//    // statement for considerable increase in humidity.
+//    picker = random(msg_count);
+//    
+//    }  
+//    else if(change_h < -(trig_h)){
+//    // statement for considerable decrease in humidity.
+//    picker = random(msg_count);
+//    
+//    }  
+//    else if(change_t >= (trig_t)){
+//    // statement for considerable increase in Temperature.
+//    picker = random(msg_count);
+//    
+//    }  
+//    else if(change_t < -(trig_t)){
+//    // statement for considerable decrease in Temperature.
+//    picker = random(msg_count);
+//    
+//    }  
+//    else return;
 
 
   // Twitter message posting implementation code here... 
   Serial.println("connecting ...");
-  if (twitter.post(msg)) {
+  if (twitter.post(msg2)) {
     // Specify &Serial to output received response to Serial.
     // If no output is required, you can just omit the argument, e.g.
     // int status = twitter.wait();
