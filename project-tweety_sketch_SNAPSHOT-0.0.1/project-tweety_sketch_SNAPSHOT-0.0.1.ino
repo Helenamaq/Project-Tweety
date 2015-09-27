@@ -32,7 +32,7 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 byte ip[] = { 10, 0, 0, 15 };
 
 // Your Token to Tweet (get it from http://arduino-tweet.appspot.com/)
-Twitter twitter("3694679955-1X9YzgVBgsTG1vQA3g6YJksypVDtXkgDbTIo20J");
+Twitter twitter("3694679955-4IT3HibxylI75f1JufKxSRJFzsy98YnM5CfKoQh");
 
 // Message to post
 char msg[] = "湿度が増加しています(Shitsudo ga zōka shite imasu )";
