@@ -112,6 +112,9 @@ void loop() // functions to execute repeatively here...
 
   float change_h = h - prev_h;
   float change_t = t - prev_t;
+
+  prev_h = h;
+  prev_t = t;
   
   if(h > maxHum || t > maxTemp) {
       digitalWrite(fan, HIGH);
