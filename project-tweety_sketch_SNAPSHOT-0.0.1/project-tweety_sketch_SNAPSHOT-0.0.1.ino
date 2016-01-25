@@ -89,12 +89,14 @@ void setup()
   // noise will cause the call to randomSeed() to generate
   // different seed numbers each time the sketch runs.
   // randomSeed() will then shuffle the random function.
+ 
   randomSeed(analogRead(0));
 
 }
 
 void loop() // functions to execute repeatively here...
-{ 
+{  // Wait a few seconds between measurements.
+  delay(2000);
 
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -115,6 +117,13 @@ void loop() // functions to execute repeatively here...
 
   prev_h = h;
   prev_t = t;
+
+  Serial.print("new prev_h value : ");
+  Serial.print(prev_h);
+  Serial.print("%\t");
+  Serial.print("new prev_t value : ");
+  Serial.print(prev_t);
+  Serial.println();
   
   if(h > maxHum || t > maxTemp) {
       digitalWrite(fan, HIGH);
@@ -128,6 +137,13 @@ void loop() // functions to execute repeatively here...
   Serial.print(t);
   Serial.println(" *C ");
 
+  Serial.print("Changed Humidity: "); 
+  Serial.print(change_h);
+  Serial.print(" %\t");
+  Serial.print("Changed Temperature: "); 
+  Serial.print(change_t);
+  Serial.println(" *C ");
+
       if(change_t >= (trig_t)){
     // statement for considerable increase in Temperature.
     picker = random(msg_count);
@@ -136,19 +152,22 @@ void loop() // functions to execute repeatively here...
     else if(change_t < -(trig_t)){
     // statement for considerable decrease in Temperature.
     picker = random(msg_count);
+    Serial.print(" Picker value : ");
+    Serial.print(picker);
+    Serial.println();
     doitbro(decTmsg[picker]);
     }
      else if(change_h >= (trig_h)){
     // statement for considerable increase in humidity.
     picker = random(msg_count);
     
-    doitbro(incHmsg[picker]);
+    doitbro(incTmsg[picker]);
     }  
     else if(change_h < -(trig_h)){
    // statement for considerable decrease in humidity.
     picker = random(msg_count);
     
-    doitbro(decHmsg[picker]);
+    doitbro(decTmsg[picker]);
     }  
   
     else {}
@@ -158,8 +177,8 @@ void loop() // functions to execute repeatively here...
 
 
 
-    // Wait an 2hour 2 min between measurements.
-    delay(1000*60*60);
+    // Wait an 2hour between measurements.
+    delay(1000*60*24*2);
 }
 
 void doitbro(char msg[]){
