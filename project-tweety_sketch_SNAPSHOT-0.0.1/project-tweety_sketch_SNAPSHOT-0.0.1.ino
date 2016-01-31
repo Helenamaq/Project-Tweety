@@ -59,10 +59,10 @@ char decHmsg[][50]={
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED  };
 
 // If you don't specify the IP address, DHCP is used(only in Arduino 1.0 or later).3694679955-1X9YzgVBgsTG1vQA3g6YJksypVDtXkgDbTIo20J //3694679955-4IT3HibxylI75f1JufKxSRJFzsy98YnM5CfKoQh
-byte ip[] = { 172, 16, 205, 136 };
-byte gateway[] = { 172, 16, 205, 1 }; //Manual setup only
+byte ip[] = { 172, 16, 200, 124 };
+byte gateway[] = { 172, 16, 200, 1 }; //Manual setup only
 byte subnet[] = { 255, 255, 255, 0 };//Manual setup only
-//byte dns[] = { 172, 16, 100, 2 };
+byte mydns[] = { 172, 16, 100, 2 };
 
 // Your Token to Tweet (get it from http://arduino-tweet.appspot.com/)
 Twitter twitter("3694679955-4IT3HibxylI75f1JufKxSRJFzsy98YnM5CfKoQh");
@@ -85,7 +85,7 @@ void setup()
  // or you can use DHCP for autoomatic IP address configuration.
  // Ethernet.begin(mac);
   //Ethernet.begin(mac,ip);
-  Ethernet.begin(mac, ip, { 172, 16, 100, 2 }, gateway);
+  Ethernet.begin(mac, ip, mydns, gateway);
   Serial.println(Ethernet.localIP());
 
   
@@ -161,13 +161,13 @@ void loop() // functions to execute repeatively here...
     Serial.print(" Picker value : ");
     Serial.print(picker);
     Serial.println();
-    doitbro(decHmsg[picker]);
+    doitbro(decTmsg[picker]);
     }
      else if(change_h >= (trig_h)){
     // statement for considerable increase in humidity.
     picker = random(msg_count);
     
-    doitbro(incTmsg[picker]);
+    doitbro(incHmsg[picker]);
     }  
     else if(change_h < -(trig_h)){
    // statement for considerable decrease in humidity.
@@ -180,11 +180,13 @@ void loop() // functions to execute repeatively here...
 
     // Wait an 2hour between measurements.
     delay(1000*60*24*2);
+    //delay(1000*5);
+
     
 }
 
 void doitbro(char msg[]){
-  delay(1000*30);
+ delay(1000*5);
         // Twitter message posting implementation code here... 
       Serial.println("connecting ...");
       if (twitter.post(msg)) {
@@ -203,6 +205,6 @@ void doitbro(char msg[]){
       }
       else {
         Serial.println("connection failed.");
-        doitbro(msg);
+       doitbro(msg);
       }
   }
